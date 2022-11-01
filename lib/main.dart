@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:pickapp/features/auth/screens/login_screen.dart';
+import 'package:pickapp/router.dart';
 import 'package:pickapp/theme/palette/pallette.dart';
+import 'package:routemaster/routemaster.dart';
 
 void main() {
   runApp(const MyApp());
@@ -9,14 +10,25 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    var isLoggedIn = true;
+
+    return MaterialApp.router(
       title: 'Pick App',
       debugShowCheckedModeBanner: false,
       theme: Pallete.darkModeAppTheme,
-      home: const LoginScreen(),
+      routerDelegate: RoutemasterDelegate(
+        routesBuilder: (context) {
+          // ignore: dead_code
+          if (isLoggedIn) {
+            return loggedInRoute;
+          }
+          // ignore: dead_code
+          return loggedOutRoute;
+        },
+      ),
+      routeInformationParser: const RoutemasterParser(),
     );
   }
 }
