@@ -12,12 +12,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var isLoggedIn = true;
+    var isLoggedIn = false;
 
     return MaterialApp.router(
       title: 'Pick App',
       debugShowCheckedModeBanner: false,
-      theme: Pallete.darkModeAppTheme,
+      theme: Pallete.lightModeAppTheme,
       routerDelegate: RoutemasterDelegate(
         routesBuilder: (context) {
           // ignore: dead_code
