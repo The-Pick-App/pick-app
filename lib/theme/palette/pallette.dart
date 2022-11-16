@@ -31,8 +31,8 @@ class Pallete {
     scaffoldBackgroundColor: whiteColor,
     cardColor: greyColor,
     appBarTheme: const AppBarTheme(
+      titleTextStyle: TextStyle(color: blackColor),
       backgroundColor: whiteColor,
-      elevation: 0,
       iconTheme: IconThemeData(
         color: blackColor,
       ),

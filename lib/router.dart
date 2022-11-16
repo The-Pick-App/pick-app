@@ -7,7 +7,7 @@ import 'package:routemaster/routemaster.dart';
 
 //If we have splash screen make '/' to spash screen
 final loggedOutRoute = RouteMap(routes: {
-  '/': (_) => const MaterialPage(child: WelcomeScreen()),
+  '/': (_) => const MaterialPage(child: RegisterScreen()),
   '/login': (_) => const MaterialPage(child: LoginScreen()),
   '/register': (_) => const MaterialPage(child: RegisterScreen()),
 });
