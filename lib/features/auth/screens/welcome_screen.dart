@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:routemaster/routemaster.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -61,7 +62,9 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
                       alignment: Alignment.center,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(),
-                        onPressed: () {},
+                        onPressed: () {
+                          Routemaster.of(context).push('/login');
+                        },
                         child: const Text('Giriş Yap'),
                       ),
                     ),
@@ -74,7 +77,9 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
                       alignment: Alignment.center,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(),
-                        onPressed: () {},
+                        onPressed: () {
+                          Routemaster.of(context).push('/register');
+                        },
                         child: const Text('Kayıt Ol'),
                       ),
                     ),
