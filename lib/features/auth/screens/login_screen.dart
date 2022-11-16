@@ -24,10 +24,12 @@ class LoginWidget extends StatefulWidget {
 }
 
 class _LoginWidgetState extends State<LoginWidget> {
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: GlobalKey<FormState>(),
+      key: formKey,
       child: SingleChildScrollView(
         child: Stack(
           children: <Widget>[
@@ -74,13 +76,10 @@ class _LoginWidgetState extends State<LoginWidget> {
                     child: Align(
                       alignment: Alignment.center,
                       child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          primary: const Color.fromARGB(255, 146, 127, 255),
-                        ),
                         onPressed: () {
                           // Validate will return true if the form is valid, or false if
                           // the form is invalid.
-                          if (GlobalKey<FormState>().currentState!.validate()) {
+                          if (formKey.currentState!.validate()) {
                             // Process data.
                           }
                         },

@@ -60,9 +60,7 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
                     child: Align(
                       alignment: Alignment.center,
                       child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          primary: const Color.fromARGB(255, 146, 127, 255),
-                        ),
+                        style: ElevatedButton.styleFrom(),
                         onPressed: () {},
                         child: const Text('Giriş Yap'),
                       ),
@@ -75,9 +73,7 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
                     child: Align(
                       alignment: Alignment.center,
                       child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          primary: const Color.fromARGB(255, 146, 127, 255),
-                        ),
+                        style: ElevatedButton.styleFrom(),
                         onPressed: () {},
                         child: const Text('Kayıt Ol'),
                       ),
