@@ -127,9 +127,6 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                     child: Align(
                       alignment: Alignment.center,
                       child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          primary: const Color.fromARGB(255, 146, 127, 255),
-                        ),
                         onPressed: () {
                           // Validate will return true if the form is valid, or false if
                           // the form is invalid.

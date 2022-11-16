@@ -8,6 +8,7 @@ class Pallete {
   static const whiteColor = Colors.white;
   static var redColor = Colors.red.shade500;
   static var blueColor = Colors.blue.shade300;
+  static var mainColor = const Color.fromARGB(255, 146, 127, 255);
 
   // Themes
   static var darkModeAppTheme = ThemeData.dark().copyWith(
@@ -42,5 +43,10 @@ class Pallete {
     ),
     primaryColor: redColor,
     backgroundColor: whiteColor,
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        primary: mainColor, // Button color
+      ),
+    ),
   );
 }
