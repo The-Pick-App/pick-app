@@ -1,4 +1,9 @@
+import 'dart:developer';
+
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:pickapp/models/register.dart';
+import 'package:pickapp/services/auth.services.dart';
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({super.key});
@@ -24,6 +29,32 @@ class RegisterWidget extends StatefulWidget {
 }
 
 class _RegisterWidgetState extends State<RegisterWidget> {
+  final TextEditingController firstNameController = TextEditingController();
+  final TextEditingController lastNameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController passwordConfirmationController =
+      TextEditingController();
+  final AuthService authService = AuthService();
+
+  Register register = Register(
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    passwordConfirmation: '',
+  );
+
+  void registerUser() {
+    register.firstName = firstNameController.text.trim();
+    register.lastName = lastNameController.text.trim();
+    register.email = emailController.text.trim();
+    register.password = passwordController.text.trim();
+    register.passwordConfirmation = passwordConfirmationController.text.trim();
+
+    authService.registerUser(context: context, registerData: register);
+  }
+
   @override
   Widget build(BuildContext context) {
     final GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -40,6 +71,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                   child: Container(
                     margin: const EdgeInsets.all(10.0),
                     child: TextFormField(
+                      controller: firstNameController,
                       decoration: const InputDecoration(
                         hintText: 'Adınız',
                         border: OutlineInputBorder(),
@@ -57,6 +89,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                   child: Container(
                     margin: const EdgeInsets.all(10.0),
                     child: TextFormField(
+                      controller: lastNameController,
                       decoration: const InputDecoration(
                         hintText: 'Soy Adınız',
                         border: OutlineInputBorder(),
@@ -74,23 +107,25 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                   child: Container(
                     margin: const EdgeInsets.all(10.0),
                     child: TextFormField(
+                      controller: emailController,
                       decoration: const InputDecoration(
                         hintText: 'E-Posta',
                         border: OutlineInputBorder(),
                       ),
-                      validator: (String? value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Boş bırakmayınız';
-                        }
-                        return null;
-                      },
+                      validator: (value) =>
+                          EmailValidator.validate(value!.trim())
+                              ? null
+                              : "Boş bırakmayın yada doğru bir email girin.",
                     ),
                   ),
                 ),
+                //pasword
                 Center(
                   child: Container(
                     margin: const EdgeInsets.all(10.0),
                     child: TextFormField(
+                      controller: passwordController,
+                      obscureText: true,
                       decoration: const InputDecoration(
                         hintText: 'Şifreniz*',
                         border: OutlineInputBorder(),
@@ -104,10 +139,13 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                     ),
                   ),
                 ),
+                //passwordconfirm
                 Center(
                   child: Container(
                     margin: const EdgeInsets.all(10.0),
                     child: TextFormField(
+                      controller: passwordConfirmationController,
+                      obscureText: true,
                       decoration: const InputDecoration(
                         hintText: 'Şifre Tekrar*',
                         border: OutlineInputBorder(),
@@ -128,34 +166,11 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                       alignment: Alignment.center,
                       child: ElevatedButton(
                         onPressed: () {
-                          // Validate will return true if the form is valid, or false if
-                          // the form is invalid.
                           if (formKey.currentState!.validate()) {
-                            // Process data.
+                            registerUser();
                           }
                         },
                         child: const Text('Hesabımı Oluştur'),
-                      ),
-                    ),
-                  ),
-                ),
-                Center(
-                  child: Container(
-                    margin: const EdgeInsets.all(10.0),
-                    child: RichText(
-                      text: TextSpan(
-                        text: 'Lorem ipsum dolor sit amet,',
-                        style: DefaultTextStyle.of(context).style,
-                        children: const <TextSpan>[
-                          TextSpan(
-                              text: ' consectetur adipiscing elit,',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Color.fromARGB(255, 146, 127, 255))),
-                          TextSpan(
-                              text:
-                                  '  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. '),
-                        ],
                       ),
                     ),
                   ),

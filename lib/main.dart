@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:pickapp/providers/user_provider.dart';
 import 'package:pickapp/router.dart';
 import 'package:pickapp/theme/palette/pallette.dart';
+import 'package:provider/provider.dart';
 import 'package:routemaster/routemaster.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: ((_) => UserProvider())),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

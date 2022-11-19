@@ -1,4 +1,6 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:pickapp/services/auth.services.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -25,6 +27,9 @@ class LoginWidget extends StatefulWidget {
 
 class _LoginWidgetState extends State<LoginWidget> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final AuthService authService = AuthService();
 
   @override
   Widget build(BuildContext context) {
@@ -44,12 +49,10 @@ class _LoginWidgetState extends State<LoginWidget> {
                         hintText: 'E-Postanız',
                         border: OutlineInputBorder(),
                       ),
-                      validator: (String? value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Boş bırakmayınız';
-                        }
-                        return null;
-                      },
+                      validator: (value) =>
+                          EmailValidator.validate(value!.trim())
+                              ? null
+                              : "Boş bırakmayın yada doğru bir email girin.",
                     ),
                   ),
                 ),
@@ -57,6 +60,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                   child: Container(
                     margin: const EdgeInsets.all(10.0),
                     child: TextFormField(
+                      obscureText: true,
                       decoration: const InputDecoration(
                         hintText: 'Şifreniz*',
                         border: OutlineInputBorder(),
