@@ -70,52 +70,61 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                 Center(
                   child: Container(
                     margin: const EdgeInsets.all(10.0),
-                    child: TextFormField(
-                      controller: firstNameController,
-                      decoration: const InputDecoration(
-                        hintText: 'Adınız',
-                        border: OutlineInputBorder(),
+                    child: SizedBox(
+                      // <--- SizedBox
+                      child: TextFormField(
+                        controller: firstNameController,
+                        decoration: const InputDecoration(
+                          hintText: 'Adınız',
+                          border: OutlineInputBorder(),
+                        ),
+                        validator: (String? value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Boş bırakmayınız';
+                          }
+                          return null;
+                        },
                       ),
-                      validator: (String? value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Boş bırakmayınız';
-                        }
-                        return null;
-                      },
                     ),
                   ),
                 ),
                 Center(
                   child: Container(
                     margin: const EdgeInsets.all(10.0),
-                    child: TextFormField(
-                      controller: lastNameController,
-                      decoration: const InputDecoration(
-                        hintText: 'Soy Adınız',
-                        border: OutlineInputBorder(),
+                    child: SizedBox(
+                      // <--- SizedBox
+                      child: TextFormField(
+                        controller: lastNameController,
+                        decoration: const InputDecoration(
+                          hintText: 'Soy Adınız',
+                          border: OutlineInputBorder(),
+                        ),
+                        validator: (String? value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Boş bırakmayınız';
+                          }
+                          return null;
+                        },
                       ),
-                      validator: (String? value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Boş bırakmayınız';
-                        }
-                        return null;
-                      },
                     ),
                   ),
                 ),
                 Center(
                   child: Container(
                     margin: const EdgeInsets.all(10.0),
-                    child: TextFormField(
-                      controller: emailController,
-                      decoration: const InputDecoration(
-                        hintText: 'E-Posta',
-                        border: OutlineInputBorder(),
+                    child: SizedBox(
+                      // <--- SizedBox
+                      child: TextFormField(
+                        controller: emailController,
+                        decoration: const InputDecoration(
+                          hintText: 'E-Posta',
+                          border: OutlineInputBorder(),
+                        ),
+                        validator: (value) =>
+                            EmailValidator.validate(value!.trim())
+                                ? null
+                                : "Boş bırakmayın yada doğru bir email girin.",
                       ),
-                      validator: (value) =>
-                          EmailValidator.validate(value!.trim())
-                              ? null
-                              : "Boş bırakmayın yada doğru bir email girin.",
                     ),
                   ),
                 ),
@@ -123,19 +132,22 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                 Center(
                   child: Container(
                     margin: const EdgeInsets.all(10.0),
-                    child: TextFormField(
-                      controller: passwordController,
-                      obscureText: true,
-                      decoration: const InputDecoration(
-                        hintText: 'Şifreniz*',
-                        border: OutlineInputBorder(),
+                    child: SizedBox(
+                      // <--- SizedBox
+                      child: TextFormField(
+                        controller: passwordController,
+                        obscureText: true,
+                        decoration: const InputDecoration(
+                          hintText: 'Şifreniz*',
+                          border: OutlineInputBorder(),
+                        ),
+                        validator: (String? value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Boş bırakmayınız';
+                          }
+                          return null;
+                        },
                       ),
-                      validator: (String? value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Boş bırakmayınız';
-                        }
-                        return null;
-                      },
                     ),
                   ),
                 ),
@@ -143,28 +155,35 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                 Center(
                   child: Container(
                     margin: const EdgeInsets.all(10.0),
-                    child: TextFormField(
-                      controller: passwordConfirmationController,
-                      obscureText: true,
-                      decoration: const InputDecoration(
-                        hintText: 'Şifre Tekrar*',
-                        border: OutlineInputBorder(),
+                    child: SizedBox(
+                      // <--- SizedBox
+                      child: TextFormField(
+                        controller: passwordConfirmationController,
+                        obscureText: true,
+                        decoration: const InputDecoration(
+                          hintText: 'Şifre Tekrar*',
+                          border: OutlineInputBorder(),
+                        ),
+                        validator: (String? value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Boş bırakmayınız';
+                          }
+                          return null;
+                        },
                       ),
-                      validator: (String? value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Boş bırakmayınız';
-                        }
-                        return null;
-                      },
                     ),
                   ),
                 ),
+
                 Center(
                   child: Container(
                     margin: const EdgeInsets.all(10.0),
                     child: Align(
                       alignment: Alignment.center,
                       child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          minimumSize: const Size.fromHeight(44),
+                        ),
                         onPressed: () {
                           if (formKey.currentState!.validate()) {
                             registerUser();
@@ -179,11 +198,12 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                      padding: const EdgeInsets.symmetric(vertical: 30.0),
                       child: Container(
-                        height: 1.0,
-                        width: 60.0,
-                        color: const Color.fromARGB(255, 153, 153, 153),
+                        margin: const EdgeInsets.all(10.0),
+                        height: 2.0,
+                        width: MediaQuery.of(context).size.width * 0.35,
+                        color: const Color.fromARGB(255, 234, 234, 234),
                       ),
                     ),
                     const Text(
@@ -195,9 +215,9 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10.0),
                       child: Container(
-                        height: 1.0,
-                        width: 60.0,
-                        color: const Color.fromARGB(255, 153, 153, 153),
+                        height: 2.0,
+                        width: MediaQuery.of(context).size.width * 0.35,
+                        color: const Color.fromARGB(255, 234, 234, 234),
                       ),
                     ),
                   ],
@@ -205,34 +225,37 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                 Center(
                   child: Container(
                     margin: const EdgeInsets.all(10.0),
-                    child: Row(
-                      children: [
-                        TextButton(
-                          style: ButtonStyle(
-                            foregroundColor: MaterialStateProperty.all<Color>(
-                              const Color.fromARGB(255, 146, 127, 255),
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.white,
+                          minimumSize: const Size.fromHeight(44),
+                        ),
+                        onPressed: () {
+                          // Validate will return true if the form is valid, or false if
+                          // the form is invalid.
+                          if (formKey.currentState!.validate()) {
+                            // Process data.
+                          }
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset('assets/images/google.png',
+                                fit: BoxFit.contain, width: 24.0, height: 24.0),
+                            const Text(
+                              'Google ile giriş yap',
+                              style: TextStyle(
+                                  fontSize: 15.0, color: Colors.black),
                             ),
-                          ),
-                          onPressed: () {},
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset('assets/images/google.png',
-                                  fit: BoxFit.contain,
-                                  width: 24.0,
-                                  height: 24.0),
-                              const Text(
-                                'Google ile kayıt ol',
-                                style: TextStyle(
-                                    fontSize: 15.0, color: Colors.black),
-                              ),
-                            ],
-                          ),
-                        )
-                      ],
+                          ],
+                        ),
+                      ),
                     ),
                   ),
                 ),
+                const SizedBox(height: 20.0),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
