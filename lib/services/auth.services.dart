@@ -64,6 +64,8 @@ class AuthService {
           tokenProvider.setToken(jsonDecode(response.body));
           await prefs.setString(
               'x-auth-token', jsonDecode(response.body)['accessToken']);
+          // ignore: use_build_context_synchronously
+          Routemaster.of(context).push('/');
         },
       );
     } catch (e) {

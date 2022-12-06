@@ -16,11 +16,6 @@ class _DemoScreenState extends State<DemoScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          title: const Text("Kayıt Ol"),
-          backgroundColor: Colors.white,
-          titleTextStyle: const TextStyle(color: Colors.black),
-        ),
         body: buildBody(),
         bottomNavigationBar: buildBottomNavigationBar(),
       ),
@@ -193,10 +188,10 @@ class _DemoScreenState extends State<DemoScreen> {
           color: Colors.white),
       child: Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
         SizedBox(
-            width: context.dynamicWidth(0.1),
-            height: context.dynamicWidth(0.1),
-            child:
-                Image.asset('assets/images/home_icon.png', fit: BoxFit.fill)),
+          width: context.dynamicWidth(0.1),
+          height: context.dynamicWidth(0.1),
+          child: Image.asset('assets/images/home_icon.png', fit: BoxFit.fill),
+        ),
         SizedBox(width: context.dynamicWidth(0.05)),
         Expanded(
           child: Column(

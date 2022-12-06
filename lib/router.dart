@@ -14,5 +14,5 @@ final loggedOutRoute = RouteMap(routes: {
   '/demo': (_) => const MaterialPage(child: DemoScreen()),
 });
 final loggedInRoute = RouteMap(routes: {
-  '/': (_) => const MaterialPage(child: HomeScreen()),
+  '/': (_) => const MaterialPage(child: DemoScreen()),
 });
