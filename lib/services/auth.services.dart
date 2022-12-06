@@ -55,7 +55,7 @@ class AuthService {
           'Content-Type': 'application/json; charset=UTF-8',
         },
       );
-      debugPrint("abbas ${response.body} ");
+      // debugPrint("abbas ${response.body} ");
       httpErrorHandle(
         response: response,
         context: context,
@@ -63,10 +63,12 @@ class AuthService {
           SharedPreferences prefs = await SharedPreferences.getInstance();
           tokenProvider.setToken(jsonDecode(response.body));
           await prefs.setString(
-              'x-auth-token', jsonDecode(response.body)['token']);
+              'x-auth-token', jsonDecode(response.body)['accessToken']);
         },
       );
     } catch (e) {
+      // debugPrint("abbas $e ");
+
       showSnackBar(context, e.toString(), Colors.red);
     }
   }

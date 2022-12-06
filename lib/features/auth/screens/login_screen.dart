@@ -1,5 +1,6 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:pickapp/models/login.dart';
 import 'package:pickapp/services/auth.services.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -31,6 +32,18 @@ class _LoginWidgetState extends State<LoginWidget> {
   final TextEditingController passwordController = TextEditingController();
   final AuthService authService = AuthService();
 
+  Login login = Login(
+    email: '',
+    password: '',
+  );
+
+  void loginUser() {
+    login.email = emailController.text.trim();
+    login.password = passwordController.text.trim();
+
+    authService.loginUser(context: context, loginData: login);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -45,6 +58,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                   child: Container(
                     margin: const EdgeInsets.all(10.0),
                     child: TextFormField(
+                      controller: emailController,
                       decoration: const InputDecoration(
                         hintText: 'E-Postanız',
                         border: OutlineInputBorder(),
@@ -60,6 +74,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                   child: Container(
                     margin: const EdgeInsets.all(10.0),
                     child: TextFormField(
+                      controller: passwordController,
                       obscureText: true,
                       decoration: const InputDecoration(
                         hintText: 'Şifreniz*',
@@ -84,10 +99,8 @@ class _LoginWidgetState extends State<LoginWidget> {
                           minimumSize: const Size.fromHeight(44),
                         ),
                         onPressed: () {
-                          // Validate will return true if the form is valid, or false if
-                          // the form is invalid.
                           if (formKey.currentState!.validate()) {
-                            // Process data.
+                            loginUser();
                           }
                         },
                         child: const Text('Giriş Yap'),
