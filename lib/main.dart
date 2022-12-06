@@ -1,44 +1,40 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:pickapp/providers/token_provider.dart';
-import 'package:pickapp/providers/user_provider.dart';
+import 'package:pickapp/globals.dart';
 import 'package:pickapp/router.dart';
 import 'package:pickapp/theme/palette/pallette.dart';
-import 'package:provider/provider.dart';
 import 'package:routemaster/routemaster.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: ((_) => UserProvider())),
-        ChangeNotifierProvider(create: ((_) => TokenProvider()))
-      ],
-      child: const MyApp(),
-    ),
+    const MyApp(),
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
   Widget build(BuildContext context) {
-    final accessToken = Provider.of<TokenProvider>(context).token;
+    // final accessToken = Provider.of<TokenProvider>(context).token;
 
-    Future<dynamic> abbas() async {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
+    Future<dynamic> getToken() async {
+      // SharedPreferences prefs = await SharedPreferences.getInstance();
 
-      return prefs.getString('x-auth-token');
+      // return prefs.getString('x-auth-token');
     }
 
     return FutureBuilder<dynamic>(
-      future: abbas(),
+      future: getToken(),
       builder: (context, snapshot) {
-        debugPrint("abbas ${accessToken.toJson()} ");
-        var isLoggedIn = snapshot.hasData;
+        if (snapshot.hasData) {
+          debugPrint("abbas ${snapshot.data} ");
+          isLoggedIn = snapshot.data != "";
+        }
 
         return MaterialApp.router(
           title: 'Pick App',
