@@ -60,23 +60,6 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
                             color: Colors.white),
                       ),
                     ),
-                    Center(
-                      child: Container(
-                        margin: const EdgeInsets.all(10.0),
-                        child: Align(
-                          alignment: Alignment.center,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              minimumSize: const Size.fromHeight(44),
-                            ),
-                            onPressed: () {
-                              Routemaster.of(context).push('/demo');
-                            },
-                            child: const Text('İçeri Gir Direk DEMO'),
-                          ),
-                        ),
-                      ),
-                    ),
                   ],
                 ),
               ]),

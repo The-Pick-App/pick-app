@@ -55,7 +55,6 @@ class AuthService {
           'Content-Type': 'application/json; charset=UTF-8',
         },
       );
-      // debugPrint("abbas ${response.body} ");
       httpErrorHandle(
         response: response,
         context: context,
@@ -65,12 +64,10 @@ class AuthService {
           await prefs.setString(
               'x-auth-token', jsonDecode(response.body)['accessToken']);
           // ignore: use_build_context_synchronously
-          Routemaster.of(context).push('/');
+          Routemaster.of(context).replace('/');
         },
       );
     } catch (e) {
-      // debugPrint("abbas $e ");
-
       showSnackBar(context, e.toString(), Colors.red);
     }
   }

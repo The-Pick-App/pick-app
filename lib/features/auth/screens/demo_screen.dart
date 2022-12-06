@@ -29,33 +29,49 @@ class _DemoScreenState extends State<DemoScreen> {
         padding: EdgeInsets.all(context.dynamicWidth(0.05)),
         width: context.dynamicWidth(1),
         decoration: const BoxDecoration(
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black12,
-                blurRadius: 10,
-                offset: Offset(0, -5),
-              ),
-            ],
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(20), topRight: Radius.circular(20)),
-            color: Colors.white),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black12,
+              blurRadius: 10,
+              offset: Offset(0, -5),
+            ),
+          ],
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20),
+            topRight: Radius.circular(20),
+          ),
+          color: Colors.white,
+        ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            const Icon(Icons.circle,
-                color: Color.fromARGB(255, 185, 173, 255), size: 32.0),
-            const Icon(Icons.circle,
-                color: Color.fromARGB(255, 185, 173, 255), size: 32.0),
+            const Icon(
+              Icons.circle,
+              color: Color.fromARGB(255, 185, 173, 255),
+              size: 32.0,
+            ),
+            const Icon(
+              Icons.circle,
+              color: Color.fromARGB(255, 185, 173, 255),
+              size: 32.0,
+            ),
             Container(
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: const Color.fromARGB(255, 185, 173, 255)),
+                borderRadius: BorderRadius.circular(10),
+                color: const Color.fromARGB(255, 185, 173, 255),
+              ),
               child: const Icon(Icons.add, color: Colors.white, size: 48),
             ),
-            const Icon(Icons.circle,
-                color: Color.fromARGB(255, 185, 173, 255), size: 32.0),
-            const Icon(Icons.circle,
-                color: Color.fromARGB(255, 185, 173, 255), size: 32.0),
+            const Icon(
+              Icons.circle,
+              color: Color.fromARGB(255, 185, 173, 255),
+              size: 32.0,
+            ),
+            const Icon(
+              Icons.circle,
+              color: Color.fromARGB(255, 185, 173, 255),
+              size: 32.0,
+            ),
           ],
         )
 
