@@ -68,4 +68,9 @@ class AuthService {
       showSnackBar(context, e.toString(), Colors.red);
     }
   }
+
+  void logout({required BuildContext context}) {
+    getStorge.remove('accessToken');
+    Routemaster.of(context).replace('/');
+  }
 }

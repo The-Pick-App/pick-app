@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pickapp/core/get_screen_size_ext.dart';
+import 'package:pickapp/services/auth.services.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -9,8 +10,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  bool isSwitched = false;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final AuthService authService = AuthService();
+  bool isSwitched = false;
 
   @override
   Widget build(BuildContext context) {
@@ -67,10 +69,11 @@ class _HomeScreenState extends State<HomeScreen> {
               color: Color.fromARGB(255, 185, 173, 255),
               size: 32.0,
             ),
-            const Icon(
-              Icons.circle,
-              color: Color.fromARGB(255, 185, 173, 255),
-              size: 32.0,
+            ElevatedButton(
+              onPressed: () {
+                authService.logout(context: context);
+              },
+              child: const Text("Logout"),
             ),
           ],
         )
