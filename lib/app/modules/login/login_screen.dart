@@ -1,6 +1,6 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
-import 'package:pickapp/models/login.dart';
+import 'package:pickapp/services/models/login.dart';
 import 'package:pickapp/services/auth.services.dart';
 
 class LoginScreen extends StatelessWidget {

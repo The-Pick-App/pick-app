@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:pickapp/core/get_screen_size_ext.dart';
 
-class DemoScreen extends StatefulWidget {
-  const DemoScreen({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
   @override
-  State<DemoScreen> createState() => _DemoScreenState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _DemoScreenState extends State<DemoScreen> {
+class _HomeScreenState extends State<HomeScreen> {
   bool isSwitched = false;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 

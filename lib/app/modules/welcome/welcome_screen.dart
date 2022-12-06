@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:routemaster/routemaster.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -73,7 +74,7 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
                         minimumSize: const Size.fromHeight(44),
                       ),
                       onPressed: () {
-                        Routemaster.of(context).push('/login');
+                        Routemaster.of(context).replace('/login');
                       },
                       child: const Text('Giriş Yap'),
                     ),
@@ -90,7 +91,7 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
                         minimumSize: const Size.fromHeight(44),
                       ),
                       onPressed: () {
-                        Routemaster.of(context).push('/register');
+                        Routemaster.of(context).replace('/register');
                       },
                       child: const Text('Kayıt Ol'),
                     ),

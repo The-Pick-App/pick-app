@@ -1,13 +1,16 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
-import 'package:pickapp/models/login.dart';
-import 'package:pickapp/models/register.dart';
+import 'package:pickapp/services/models/login.dart';
+import 'package:pickapp/services/models/register.dart';
 import 'package:pickapp/utils/utils.dart';
 import 'package:routemaster/routemaster.dart';
 
 class AuthService {
+  final getStorge = GetStorage();
+
   void registerUser({
     required BuildContext context,
     required Register registerData,
@@ -53,12 +56,11 @@ class AuthService {
       httpErrorHandle(
         response: response,
         context: context,
-        onSuccess: () async {
-          // SharedPreferences prefs = await SharedPreferences.getInstance();
-          // tokenProvider.setToken(jsonDecode(response.body));
-          // await prefs.setString(
-          //     'x-auth-token', jsonDecode(response.body)['accessToken']);
-          // ignore: use_build_context_synchronously
+        onSuccess: () {
+          getStorge.write(
+            "accessToken",
+            jsonDecode(response.body)['accessToken'],
+          );
           Routemaster.of(context).replace('/');
         },
       );
