@@ -17,7 +17,8 @@ class AuthService {
   }) async {
     try {
       http.Response response = await http.post(
-        Uri.parse('http://10.0.2.2:8081/api/users'),
+        Uri.parse(
+            'https://pickapp-backend-production.up.railway.app/api/users'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -47,7 +48,8 @@ class AuthService {
   }) async {
     try {
       http.Response response = await http.post(
-        Uri.parse('http://10.0.2.2:8081/api/sessions'),
+        Uri.parse(
+            'https://pickapp-backend-production.up.railway.app/api/sessions'),
         body: loginData.toJson(),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
