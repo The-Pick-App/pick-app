@@ -63,7 +63,7 @@ class AuthService {
             "accessToken",
             jsonDecode(response.body)['accessToken'],
           );
-          Routemaster.of(context).replace('/');
+          Routemaster.of(context).replace('/home');
         },
       );
     } catch (e) {
