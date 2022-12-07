@@ -7,7 +7,7 @@ import 'package:routemaster/routemaster.dart';
 
 void main() async {
   await GetStorage.init();
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
