@@ -13,6 +13,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final AuthService authService = AuthService();
   bool isSwitched = false;
+  int selectedCar = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -135,7 +136,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 width: context.dynamicWidth(1),
                 child: Image.asset('assets/images/map.jpg', fit: BoxFit.fill)),
             Column(
-                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [buildSwitch(), buildInfo()]),
           ],
         ),
@@ -196,7 +197,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget buildInfo() {
     return Container(
-      height: context.dynamicWidth(0.35),
+      height: context.dynamicWidth(0.75),
       padding: EdgeInsets.symmetric(
           vertical: context.dynamicWidth(0.05),
           horizontal: context.dynamicWidth(0.075)),
@@ -205,181 +206,88 @@ class _HomeScreenState extends State<HomeScreen> {
           borderRadius: BorderRadius.only(
               topLeft: Radius.circular(20), topRight: Radius.circular(20)),
           color: Colors.white),
-      child: Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
-        SizedBox(
-          width: context.dynamicWidth(0.1),
-          height: context.dynamicWidth(0.1),
-          child: Image.asset('assets/images/home_icon.png', fit: BoxFit.fill),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        const Text("Araç Seçiniz",
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
+        const SizedBox(height: 5),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [for (int i = 0; i < 4; i++) buildCarIcon(i)],
         ),
-        SizedBox(width: context.dynamicWidth(0.05)),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text('İSTANBUL/PENDİK',
-                  style: TextStyle(fontWeight: FontWeight.bold)),
-              SizedBox(height: context.dynamicWidth(0.02)),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      child: Row(
-                        children: const [
-                          Expanded(
-                              child:
-                                  Text('● Karaağaç caddesi Karaağaç caddesi')),
-                          SizedBox(width: 10),
-                          Expanded(child: Text('● Alvin sokak')),
-                        ],
-                      ),
-                    ),
-                    Expanded(
-                      child: Row(
-                        children: const [
-                          Expanded(child: Text('● No: 7')),
-                          SizedBox(width: 10),
-                          Expanded(child: Text('● Daire : 6')),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ],
-          ),
-        )
+        const SizedBox(height: 10),
+        const Text(
+          "Teslimat",
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+        ),
+        const SizedBox(height: 5),
+        buildTeslimatInfo(),
+        const SizedBox(height: 10),
       ]),
     );
   }
+
+  Widget buildTeslimatInfo() {
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      decoration: BoxDecoration(
+          color: Colors.purple, borderRadius: BorderRadius.circular(10)),
+      child: Row(children: [
+        const Spacer(),
+        Expanded(
+          flex: 15,
+          child: Container(
+            padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+                color: Colors.blue, borderRadius: BorderRadius.circular(10)),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const [
+                Text("Nereden", style: TextStyle(color: Colors.white)),
+                SizedBox(height: 5),
+                Text("Bursa caddesi bilmem ne adresi nedir bu",
+                    style: TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.bold)),
+              ],
+            ),
+          ),
+        ),
+        const Spacer(),
+        Expanded(
+          flex: 15,
+          child: Container(
+            padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+                color: Colors.blue, borderRadius: BorderRadius.circular(10)),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const [
+                Text("Nereye", style: TextStyle(color: Colors.white)),
+                SizedBox(height: 5),
+                Text("Bursa caddesi bilmem ne adresi nedir bu",
+                    style: TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.bold)),
+              ],
+            ),
+          ),
+        ),
+        const Spacer(),
+      ]),
+    );
+  }
+
+  Widget buildCarIcon(int index) {
+    return GestureDetector(
+      onTap: () => setState(() => selectedCar = index),
+      child: Container(
+          width: context.dynamicWidth(0.15),
+          height: context.dynamicWidth(0.15),
+          decoration: BoxDecoration(
+              color: selectedCar == index ? Colors.purple : Colors.white,
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(
+                  color:
+                      selectedCar == index ? Colors.transparent : Colors.grey)),
+          child: const Icon(Icons.car_crash)),
+    );
+  }
 }
-/*
-
-
-   Container(
-          height: 120.0,
-          width: MediaQuery.of(context).size.width * 100,
-          decoration: BoxDecoration(
-            color: const Color.fromARGB(255, 234, 234, 234),
-            border: Border.all(
-                color: const Color.fromARGB(255, 234, 234, 234),
-                width: 5.0,
-                style: BorderStyle.solid),
-            borderRadius: const BorderRadius.only(
-              topRight: Radius.circular(20),
-              topLeft: Radius.circular(20),
-            ),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Column(children: [
-                    Container(
-                      color: const Color.fromARGB(255, 234, 234, 234),
-                      child: const Align(
-                        alignment: Alignment.center,
-                        child: Icon(
-                          Icons.home,
-                          color: Color.fromARGB(255, 146, 127, 255),
-                          size: 32.0,
-                        ),
-                      ),
-                    ),
-                  ]),
-                  Column(children: [
-                    Column(children: [
-                      Row(children: [
-                        Column(children: const [
-                          Align(
-                            alignment: Alignment.center,
-                            child: Text(
-                              'İSTANBUL / PENDİK',
-                              style: TextStyle(
-                                  fontSize: 20.0,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
-                            ),
-                          ),
-                        ]),
-                      ]),
-                      Row(children: [
-                        Container(
-                          color: const Color.fromARGB(255, 234, 234, 234),
-                          child: const Align(
-                            alignment: Alignment.center,
-                            child: Text(
-                              '• Karaağaç caddesi',
-                              style: TextStyle(
-                                  fontSize: 10.0,
-                                  color: Color.fromARGB(255, 153, 153, 153)),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          color: const Color.fromARGB(255, 234, 234, 234),
-                          child: const Align(
-                            alignment: Alignment.center,
-                            child: Text(
-                              '• Alpin Sokak',
-                              style: TextStyle(
-                                  fontSize: 10.0,
-                                  color: Color.fromARGB(255, 153, 153, 153)),
-                            ),
-                          ),
-                        ),
-                      ]),
-                      Row(children: [
-                        Container(
-                          color: const Color.fromARGB(255, 234, 234, 234),
-                          child: const Align(
-                            alignment: Alignment.center,
-                            child: Text(
-                              '• No : 7 ',
-                              style: TextStyle(
-                                  fontSize: 10.0,
-                                  color: Color.fromARGB(255, 153, 153, 153)),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          color: const Color.fromARGB(255, 234, 234, 234),
-                          child: const Align(
-                            alignment: Alignment.center,
-                            child: Text(
-                              '• Daire : 6 ',
-                              style: TextStyle(
-                                  fontSize: 10.0,
-                                  color: Color.fromARGB(255, 153, 153, 153)),
-                            ),
-                          ),
-                        ),
-                      ]),
-                    ]),
-                  ]),
-                ],
-              ),
-            ],
-          ),
-        ),
-        Container(
-          height: 120.0,
-          width: MediaQuery.of(context).size.width * 100,
-          decoration: BoxDecoration(
-            color: const Color.fromARGB(255, 234, 234, 234),
-            border: Border.all(
-                color: const Color.fromARGB(255, 234, 234, 234),
-                width: 5.0,
-                style: BorderStyle.solid),
-            borderRadius: const BorderRadius.only(
-              topRight: Radius.circular(20),
-              topLeft: Radius.circular(20),
-            ),
-          ),
-        ),
-     
-
-
-*/
