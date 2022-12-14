@@ -77,54 +77,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: const Text("Logout"),
             ),
           ],
-        )
-
-        // BottomNavigationBar(
-        //   items: const [
-        //     BottomNavigationBarItem(
-        //       icon: Icon(
-        //         Icons.circle,
-        //         color: Color.fromARGB(255, 185, 173, 255),
-        //         size: 32.0,
-        //       ),
-        //       label: '',
-        //     ),
-        //     BottomNavigationBarItem(
-        //       icon: Icon(
-        //         Icons.circle,
-        //         color: Color.fromARGB(255, 185, 173, 255),
-        //         size: 32.0,
-        //       ),
-        //       label: 'sa',
-        //     ),
-        //     BottomNavigationBarItem(
-        //       icon: Icon(
-        //         Icons.add,
-        //         color: Color.fromARGB(255, 146, 127, 255),
-        //         size: 64.0,
-        //       ),
-        //       label: 'asdas',
-        //     ),
-        //     BottomNavigationBarItem(
-        //       icon: Icon(
-        //         Icons.circle,
-        //         color: Color.fromARGB(255, 185, 173, 255),
-        //         size: 32.0,
-        //       ),
-        //       label: '',
-        //     ),
-        //     BottomNavigationBarItem(
-        //       icon: Icon(
-        //         Icons.circle,
-        //         color: Color.fromARGB(255, 185, 173, 255),
-        //         size: 32.0,
-        //       ),
-        //       label: '',
-        //     ),
-        //   ],
-        // ),
-
-        );
+        ));
   }
 
   Widget buildBody() {
@@ -132,9 +85,14 @@ class _HomeScreenState extends State<HomeScreen> {
       Expanded(
         child: Stack(
           children: [
-            SizedBox(
-                width: context.dynamicWidth(1),
-                child: Image.asset('assets/images/map.jpg', fit: BoxFit.fill)),
+            isSwitched
+                ? SizedBox(
+                    width: context.dynamicWidth(1),
+                    child:
+                        Image.asset('assets/images/map.jpg', fit: BoxFit.fill))
+                : Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [buildCardListInfo()]),
             Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [buildSwitch(), buildInfo()]),
@@ -230,7 +188,8 @@ class _HomeScreenState extends State<HomeScreen> {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 10),
       decoration: BoxDecoration(
-          color: Colors.purple, borderRadius: BorderRadius.circular(10)),
+          color: const Color.fromARGB(255, 185, 173, 255),
+          borderRadius: BorderRadius.circular(10)),
       child: Row(children: [
         const Spacer(),
         Expanded(
@@ -238,7 +197,8 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Container(
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
-                color: Colors.blue, borderRadius: BorderRadius.circular(10)),
+                color: const Color.fromARGB(255, 146, 127, 255),
+                borderRadius: BorderRadius.circular(10)),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: const [
@@ -257,15 +217,16 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Container(
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
-                color: Colors.blue, borderRadius: BorderRadius.circular(10)),
+                color: const Color.fromARGB(255, 255, 255, 255),
+                borderRadius: BorderRadius.circular(10)),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: const [
-                Text("Nereye", style: TextStyle(color: Colors.white)),
+                Text("Nereye", style: TextStyle(color: Colors.black)),
                 SizedBox(height: 5),
                 Text("Bursa caddesi bilmem ne adresi nedir bu",
                     style: TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.bold)),
+                        color: Colors.black, fontWeight: FontWeight.bold)),
               ],
             ),
           ),
@@ -282,12 +243,95 @@ class _HomeScreenState extends State<HomeScreen> {
           width: context.dynamicWidth(0.15),
           height: context.dynamicWidth(0.15),
           decoration: BoxDecoration(
-              color: selectedCar == index ? Colors.purple : Colors.white,
+              color: selectedCar == index
+                  ? const Color.fromARGB(255, 146, 127, 255)
+                  : Colors.white,
               borderRadius: BorderRadius.circular(10),
               border: Border.all(
                   color:
                       selectedCar == index ? Colors.transparent : Colors.grey)),
           child: const Icon(Icons.car_crash)),
     );
+  }
+
+  final List<String> adressLeft = <String>['A', 'B', 'C', 'D', 'E', 'F'];
+  final List<String> adressRight = <String>['B', 'C', 'D', 'E', 'F', 'G'];
+
+  final List<int> colorCodes = <int>[600, 500, 100, 123, 300, 400];
+  Widget buildCardListInfo() {
+    return Container(
+        height: 250,
+        padding: const EdgeInsets.symmetric(vertical: 10),
+        decoration: BoxDecoration(
+            // color: const Color.fromARGB(255, 185, 173, 255),
+            borderRadius: BorderRadius.circular(10)),
+        child: Column(
+          children: [
+            ListView.separated(
+              scrollDirection: Axis.vertical,
+              shrinkWrap: true,
+              primary: true,
+              padding: const EdgeInsets.all(8),
+              itemCount: adressLeft.length,
+              itemBuilder: (BuildContext context, int index) {
+                return Container(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  decoration: BoxDecoration(
+                      color: const Color.fromARGB(255, 185, 173, 255),
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Row(children: [
+                    const Spacer(),
+                    Expanded(
+                      flex: 15,
+                      child: Container(
+                        padding: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                            color: const Color.fromARGB(255, 146, 127, 255),
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: const [
+                            Text("Nereden",
+                                style: TextStyle(color: Colors.white)),
+                            SizedBox(height: 5),
+                            Text("sd",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold)),
+                          ],
+                        ),
+                      ),
+                    ),
+                    const Spacer(),
+                    Expanded(
+                      flex: 15,
+                      child: Container(
+                        padding: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                            color: const Color.fromARGB(255, 255, 255, 255),
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: const [
+                            Text("Nereye",
+                                style: TextStyle(color: Colors.black)),
+                            SizedBox(height: 5),
+                            Text("Bursa caddesi bilmem ne adresi nedir bu",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold)),
+                          ],
+                        ),
+                      ),
+                    ),
+                    const Spacer(),
+                  ]),
+                );
+              },
+              separatorBuilder: (BuildContext context, int index) =>
+                  const Divider(),
+            )
+          ],
+        ));
   }
 }
