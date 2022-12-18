@@ -46,6 +46,6 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> initializeSettings(BuildContext context) async {
-    await Future.delayed(const Duration(seconds: 3));
+    await Future.delayed(const Duration(seconds: 0));
   }
 }

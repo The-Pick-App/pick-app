@@ -22,10 +22,10 @@ final routes = RouteMap(routes: {
 canUserAccessPage() {
   bool canAccess = false;
   var accessToken = box.read("accessToken");
-  debugPrint('abbas: $accessToken');
 
   if (accessToken != null && accessToken != "") {
     canAccess = true;
   }
+
   return canAccess;
 }
